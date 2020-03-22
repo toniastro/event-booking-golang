@@ -256,7 +256,7 @@ func (detail *Payload) Confirm() (map[string] interface{}) {
 
 		err := GetDB().Table("details").Where("reference = ?", detail.Txref).First(details).Error
 
-		if err != nil || err = gorm.ErrRecordNotFound {
+		if err != nil || err == gorm.ErrRecordNotFound {
 
 			return u.Message(false, "Something went wrong with verifying reference code")
 
