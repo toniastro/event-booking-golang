@@ -1,0 +1,21 @@
+[2020-02-19 15:10:44] Port not set in .env
+[2020-02-19 15:10:59] listen tcp :1010: bind: address already in use
+[2020-02-19 15:12:16] open views/errors/404.html: no such file or directory
+[2020-02-20 10:32:58] listen tcp :2010: bind: address already in use
+[2020-02-29 12:41:27] template: app.gohtml:47:29: executing "app" at <.Message>: can't evaluate field Message in type controllers.Details
+[2020-02-29 16:56:38] template: app.gohtml:47:29: executing "app" at <.Message>: can't evaluate field Message in type controllers.Error
+[2020-03-02 10:32:49] dial tcp [::1]:3306: connect: connection refused
+[2020-03-03 22:41:23] template: app.gohtml:47:29: executing "app" at <.Message>: can't evaluate field Message in type uint8
+[2020-03-03 22:41:30] template: app.gohtml:47:29: executing "app" at <.Message>: can't evaluate field Message in type uint8
+[2020-03-03 22:41:33] template: app.gohtml:47:29: executing "app" at <.Message>: can't evaluate field Message in type uint8
+[2020-03-03 22:46:58] template: app.gohtml:47:29: executing "app" at <.Message>: can't evaluate field Message in type uint8
+[2020-03-03 23:55:42] sql: unknown driver "mysql" (forgotten import?)
+[2020-03-03 23:57:38] sql: unknown driver "mysql" (forgotten import?)
+[2020-03-03 23:58:01] dial tcp: lookup lagos-hangouts2: no such host
+[2020-03-11 21:52:24] dial tcp [::1]:3306: connect: connection refused
+[2020-03-21 21:06:13] {"status":"error","message":"Transaction not found","data":{"code":"NO_TX","message":"Transaction not found"}}
+[2020-03-22 15:44:57] Something went wrong here sha 3
+[2020-03-22 15:45:07] Something went wrong here sha 3
+[2020-03-22 15:59:59] Something went wrong here sha 3
+[2020-03-22 16:16:33] {"status":"error","message":"Transaction not found","data":{"code":"NO_TX","message":"Transaction not found"}}
+[2020-03-22 17:04:26] Something went wrong here sha 3
