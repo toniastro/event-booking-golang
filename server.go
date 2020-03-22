@@ -57,10 +57,4 @@ func main() {
 		log.Fatal(err)
 	}
 
-	
-
-	// fmt.Println("Server started at http://localhost:8080")
-    // http.HandleFunc("/", helloWorld)
-	// http.ListenAndServe(":8080", nil)
-	
 }

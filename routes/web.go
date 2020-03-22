@@ -17,17 +17,8 @@ func Init() *mux.Router {
 	
 	route.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./public"))))
 	route.NotFoundHandler = http.HandlerFunc(notFound)
-	
-
-	// route.HandleFunc("/", controllers.Whattodo).Methods("GET","POST")
 	route.HandleFunc("/api/initiate", controllers.Detail).Methods("POST")
 	route.HandleFunc("/api/verify", controllers.Verify).Methods("POST")
-	// route.HandleFunc("/dashboard", controllers.Dashboard)
-	// route.HandleFunc("/categories", controllers.Category)
-	// route.HandleFunc("/login", controllers.Login).Methods("GET", "POST")
-	// route.HandleFunc("/{category}", controllers.Scent)
-	// route.HandleFunc("/{category}/{scent}", controllers.Perfume)
-	// route.HandleFunc("/{category}/{scent}/{bottle}/checkout", controllers.Checkout)
 
 	return route
 }
