@@ -5,71 +5,70 @@
 </head>
 
 <style>
-    .main {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        font-family: Papyrus, serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 288px;
-        line-height: 444px;
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,500');
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    font-family: "Roboto Mono", "Liberation Mono", Consolas, monospace;
+    color: rgba(255,255,255,.87);
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container,
+.container > .row,
+.container > .row > div {
+    height: 100%;
+}
+
+#countUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+    .number {
+        font-size: 4rem;
+        font-weight: 500;
+        
+        + .text {
+            margin: 0 0 1rem;
+        }
+    }
+    
+    .text {
+        font-weight: 300;
         text-align: center;
-        color: #000000;
-        transform: translate(-50%, -50%);
     }
-
-    .subtitle {
-        position: absolute;
-        left: 50%;
-        top: 60%;
-        padding-top: 2em;
-        font-family: Papyrus, serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 36px;
-        line-height: 56px;
-        text-align: center;
-        color: #000000;
-        transform: translate(-50%, -50%);
-    }
-
-    .action {
-        position: absolute;
-        left: 50%;
-        top: 90%;
-        padding-left: 30px;
-        font-family: Papyrus, serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 36px;
-        line-height: 56px;
-        text-align: center;
-        color: #000000;
-        transform: translate(-50%, -50%);
-    }
-
-    a {
-        color: #000000;
-        text-decoration: none;
-    }
-
-    .arrow {
-        padding-right: 21px
-    }
+}
 </style>
 
 <body>
-<div class="main">404</div>
-<div class="subtitle">Was it worth it?</div>
-<div class="action">
-    <a href="/">
-        <svg class="arrow" width="66" height="30" viewBox="0 0 66 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.58015 13.8391C0.802225 14.6233 0.807284 15.8896 1.59145 16.6675L14.3701 29.3445C15.1543 30.1224 16.4206 30.1173 17.1985 29.3332C17.9764 28.549 17.9714 27.2827 17.1872 26.5048L5.8284 15.2364L17.0968 3.87754C17.8747 3.09338 17.8697 1.82706 17.0855 1.04914C16.3014 0.271217 15.035 0.276276 14.2571 1.06044L1.58015 13.8391ZM64.9996 13L2.99201 13.2477L3.00799 17.2476L65.0156 16.9999L64.9996 13Z"
-                  fill="black"/>
-        </svg>Go Home
-    </a>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="xs-12 md-6 mx-auto">
+            <div id="countUp">
+                <div class="number" data-count="404">404</div>
+                <div class="text">Page not found</div>
+                <div class="text">This may not mean anything.</div>
+                <div class="text">I'm probably working on something that has blown up or you trying to access something unallowed 😬😬.</div>
+            </div>
+        </div>
+    </div>
+</div>  
 </body>
 </html>
 
