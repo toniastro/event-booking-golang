@@ -21,7 +21,7 @@ import (
 	"github.com/rs/xid"
 	"encoding/json"
 )
-//Post Type details
+
 type Details struct{
 	gorm.Model
 	Name   string `gorm:"type:varchar(100)" json:"name"`
@@ -145,38 +145,6 @@ func init(){
 	}
 }
 
-// func (detail *Details) Validate() (map[string] interface{}, bool) {
-
-// 	if !strings.Contains(detail.Email, "@") {
-// 		return u.Message(false, "Email address is required"), false
-// 	}
-
-// 	if detail.Name == "" {
-// 		return u.Message(false, "Name is required"), false
-// 	}
-
-// 	if len(detail.Name) < 3 {
-// 		return u.Message(false, "Name is not valid"), false
-// 	}
-
-// 	if len(detail.Phone) < 11 || len(detail.Phone) > 11 {
-// 		return u.Message(false, "Phone number is not valid"), false
-// 	}
-
-// 	//Email must be unique
-// 	temp := &Details{}
-
-// 	//check for errors and duplicate emails
-// 	err := GetDB().Table("details").Where("email = ?", detail.Email).First(temp).Error
-// 	if err != nil && err != gorm.ErrRecordNotFound {
-// 		return u.Message(false, "Connection error. Please retry"), false
-// 	}
-// 	if temp.Email != "" {
-// 		return u.Message(false, "Email address already in use by another user."), false
-// 	}
-
-// 	return u.Message(false, "Requirement passed"), true
-// }
 func (a Details) Validate() error {
 
 	return validation.ValidateStruct(&a,
@@ -190,23 +158,20 @@ func (detail *Details) Create() (map[string] interface{}) {
 
 	err := detail.Validate()
 
-	// if resp, ok := detail.Validate(); !ok {
-	// 	return resp
-	// }
 	if err != nil {
 		b, _ := json.Marshal(err)
 		return u.Message(false, string(b))
 	}
 
-	//Email must be unique
 	temp := &Details{}
+
 	//check for errors and duplicate emails
 	errors := GetDB().Table("details").Where("email = ?", detail.Email).First(temp).Error
 	if errors != nil && errors != gorm.ErrRecordNotFound {
 		return u.Errors(false, "Something went wrong. Please retry")
 		
 	}
-	//For users that started the purchase process, but didnt complete and would love to come back to complete it.
+
 	if temp.Email != "" {
 		//This means someone has used this email to pay for stuffff, hehe.
 		if temp.Completed == true {
@@ -239,7 +204,7 @@ func (detail *Details) Create() (map[string] interface{}) {
 	}
 
 	mapD := map[string]string{"email": detail.Email, "reference": detail.Reference}
-    // mapB, _ := json.Marshal(mapD)
+
 	response := u.Message(true, "Detail has been updated")
 	
 	response["details"] = mapD
@@ -247,7 +212,6 @@ func (detail *Details) Create() (map[string] interface{}) {
 }
 
 func (detail *Payload) Confirm() (map[string] interface{}) {
-	// temp := &Payload{}
 	details := &Details{}
 	logger, _ := thoth.Init("log")
 	if detail.Txref == "" {
@@ -309,27 +273,24 @@ func confirm_reference_code(txref string) string {
 	}	
 	req, err := http.NewRequest("POST", return_api(), body)
 	if err != nil {
-		return "Something went wrong here sha 1"
+		return "Something went wrong."
 	}
 	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return "Something went wrong here sha 3"
+		return "Something went wrong here, please retry"
 	}
 	
 	defer resp.Body.Close()
 
 	result,err := ioutil.ReadAll(resp.Body)
 	if err != nil{
-		return "Something went wrong here sha 4"
-		// log.Fatalln(err)
+		return "Something went wrong in reading body passed"
 	}
 	return string(result)
-
-
 }
-//Check for existing reference code 
+
 func check_for_existing_ref() string{
 	reference := generate_reference()
 	GetDB().Table("details").Where("reference = ?", reference).Count(&count)
@@ -341,13 +302,12 @@ func check_for_existing_ref() string{
 	}
 }
 
-//Generate new reference code for payment bla bla
 func generate_reference() string {
 	guid := xid.New()
 	reference := guid.String()
 	return reference
 }
-//Return URL for live or test mode
+
 func return_api() string {
 	if os.Getenv("RAVE_MODE") != "live" {
 		return os.Getenv("RAVE_API_TEST")

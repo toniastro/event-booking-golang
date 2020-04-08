@@ -1,24 +1,16 @@
 package controllers
 
 import (
-	// "html/template"
 	"net/http"
-	"time"
 	"twitter-hangouts/views"
 	"twitter-hangouts/models"
 	"encoding/json"
 	u "twitter-hangouts/utils"
-
 )
 
 var results []string
 
 var view *views.View
-
-
-func makeTimestamp() int64 {
-	return time.Now().UnixNano() / int64(time.Millisecond)
-}
 
 var Detail = func(w http.ResponseWriter, r *http.Request) {
 

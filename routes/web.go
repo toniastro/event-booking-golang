@@ -4,11 +4,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-
 	"github.com/ichtrojan/thoth"
-
 	"twitter-hangouts/controllers"
-	
 	"github.com/gorilla/mux"
 )
 

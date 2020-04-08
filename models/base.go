@@ -10,7 +10,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-var db *gorm.DB //database
+var db *gorm.DB 
 
 func init() {
 	logger, _ := thoth.Init("log")
@@ -40,7 +40,6 @@ func init() {
 	db.Debug().AutoMigrate(&Details{}) //Database migration
 }
 
-//returns a handle to the DB object
 func GetDB() *gorm.DB {
 	return db
 }

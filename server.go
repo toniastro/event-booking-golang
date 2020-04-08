@@ -3,7 +3,6 @@ package main
 import (
     "fmt"
 	"net/http"
-
 	"github.com/ichtrojan/thoth"
 	"github.com/joho/godotenv"
 	"errors"
@@ -24,17 +23,9 @@ func main() {
 		logger.Log(errors.New("no .env file found"))
 		log.Fatal("No .env file found")
 	}
-	
-	
-
-	// db, present := os.LookupEnv("DB_NAME")
 
 	port, port_exists := os.LookupEnv("PORT")
 
-	// if !present {
-	// 	logger.Log(errors.New("DB Name not set in .env"))
-	// 	log.Fatal("DB Name not set in .env")
-	// }
 	if !port_exists {
 		port = "8000"
 	}
